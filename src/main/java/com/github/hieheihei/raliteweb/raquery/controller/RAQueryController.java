@@ -25,7 +25,7 @@ public class RAQueryController {
 
         queryService.query(q);
         result.setModel(q);
-
+        
         result.setStatus("OK");
         result.setMessage("查询成功");
 

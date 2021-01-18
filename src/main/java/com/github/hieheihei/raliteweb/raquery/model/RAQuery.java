@@ -1,5 +1,8 @@
 package com.github.hieheihei.raliteweb.raquery.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -7,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class RAQuery {
+public class RAQuery{
 
     private String query = null;
     private boolean hasExecuted = false;
@@ -51,13 +54,29 @@ public class RAQuery {
         return new ResultData(rs);
     }
 
-    public static class ResultData{
+    public static class ResultData implements Serializable {
         private String[] colNames;
         private List<String[]> data = new ArrayList<>();
 
         public ResultData(ResultSet rs) throws SQLException {
             parseColNames(rs);
             parseData(rs);
+        }
+
+        public String[] getColNames() {
+            return colNames;
+        }
+
+        public void setColNames(String[] colNames) {
+            this.colNames = colNames;
+        }
+
+        public List<String[]> getData() {
+            return data;
+        }
+
+        public void setData(List<String[]> data) {
+            this.data = data;
         }
 
         private void parseColNames(ResultSet rs) throws SQLException {
