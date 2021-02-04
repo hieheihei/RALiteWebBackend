@@ -1,7 +1,5 @@
 package com.github.hieheihei.raliteweb.raquery.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;

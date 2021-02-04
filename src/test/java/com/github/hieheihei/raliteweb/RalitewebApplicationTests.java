@@ -27,7 +27,8 @@ class RalitewebApplicationTests {
 
     @Test
     void daoTest(){
-        RAQuery.ResultData data = queryDao.execute("select * from tbA;");
+//        RAQuery.ResultData data = queryDao.execute("select * from tbA;");
+        RAQuery.ResultData data = queryDao.execute("tbA;");
 
         System.out.println(data);
 
