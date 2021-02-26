@@ -28,6 +28,7 @@ class RalitewebApplicationTests {
     @Test
     void daoTest(){
 //        RAQuery.ResultData data = queryDao.execute("select * from tbA;");
+//        queryDao.execute("insert into tbA (a,b) values (2,2)");
         RAQuery.ResultData data = queryDao.execute("tbA;");
 
         System.out.println(data);
