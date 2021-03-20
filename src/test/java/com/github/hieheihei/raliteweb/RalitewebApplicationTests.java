@@ -29,9 +29,12 @@ class RalitewebApplicationTests {
     void daoTest(){
 //        RAQuery.ResultData data = queryDao.execute("select * from tbA;");
 //        queryDao.execute("insert into tbA (a,b) values (2,2)");
-        RAQuery.ResultData data = queryDao.execute("tbA;");
+        RAQuery.ResultData data1 = queryDao.execute("tbA;");
+        System.out.println(data1);
 
-        System.out.println(data);
+        RAQuery.ResultData data2 = queryDao.execute("select * from sqlite_master where type = 'table'");
+        System.out.println(data2);
+
 
     }
 

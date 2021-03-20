@@ -54,11 +54,21 @@ public class RAQuery{
 
     public static class ResultData implements Serializable {
         private String[] colNames;
+        private String[] colTypes;
         private List<String[]> data = new ArrayList<>();
 
         public ResultData(ResultSet rs) throws SQLException {
             parseColNames(rs);
+            parseColTypes(rs);
             parseData(rs);
+        }
+
+        public String[] getColTypes() {
+            return colTypes;
+        }
+
+        public void setColTypes(String[] colTypes) {
+            this.colTypes = colTypes;
         }
 
         public String[] getColNames() {
@@ -87,6 +97,16 @@ public class RAQuery{
             }
         }
 
+        private void parseColTypes(ResultSet rs) throws SQLException{
+            ResultSetMetaData md = rs.getMetaData();
+
+            int colNum = md.getColumnCount();
+            colTypes = new String[colNum];
+            for(int i = 0; i<colNum; i++){
+                colTypes[i] = md.getColumnTypeName(i+1);
+            }
+        }
+
         private void parseData(ResultSet rs) throws SQLException {
             while (rs.next()){
                 String[] row = new String[colNames.length];
@@ -101,6 +121,8 @@ public class RAQuery{
         public String toString(){
             StringBuilder sb = new StringBuilder();
             sb.append(Arrays.toString(colNames));
+            sb.append('\n');
+            sb.append(Arrays.toString(colTypes));
             sb.append('\n');
             for(String[] row : data){
                 sb.append(Arrays.toString(row));

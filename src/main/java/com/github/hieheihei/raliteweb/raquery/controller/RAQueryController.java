@@ -15,7 +15,7 @@ import java.util.Map;
 @RequestMapping("/raQuery")
 public class RAQueryController {
 
-    private IRAQueryService queryService;
+    private final IRAQueryService queryService;
 
     private static Logger logger = LoggerFactory.getLogger(RAQueryController.class);
 
@@ -24,7 +24,12 @@ public class RAQueryController {
         this.queryService = queryService;
     }
 
-    @PostMapping
+    /**
+     * 执行RALite查询
+     * @param model query:originalQueryStatement
+     * @return RAQuery对象，包含查询语句，查询状态，查询结果
+     */
+    @PutMapping
     public Result<RAQuery> query(@RequestBody Map<String,String> model){
         Result<RAQuery> result = new Result<>();
 
@@ -38,6 +43,8 @@ public class RAQueryController {
 
         result.setStatus("OK");
         result.setMessage("查询成功");
+
+        logger.info("resultData:\n"+q.getResultData());
 
         return result;
     }
