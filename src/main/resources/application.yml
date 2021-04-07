@@ -4,9 +4,11 @@ server:
 spring:
   datasource:
     driver-class-name: org.sqlite.JDBC
-    url: jdbc:sqlite:test.db
+    url: jdbc:sqlite:radata.db
 
 #showSql
 logging:
   level:
     com.github.hieheihei.hdog: debug
+  file:
+    name: RALiteWebBackend.log

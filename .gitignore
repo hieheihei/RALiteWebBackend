@@ -35,3 +35,6 @@ build/
 
 ### database ###
 *.db
+
+### RALite-JDBC ###
+lib/
